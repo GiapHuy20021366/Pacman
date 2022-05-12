@@ -1,2 +1,2 @@
-SIZE_PER_UNIT = 4 #pixel
+SIZE_PER_UNIT = 2.5 #pixel
 SPACE = 10 #unit

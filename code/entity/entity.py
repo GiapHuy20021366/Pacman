@@ -8,15 +8,16 @@ from animate.animation import*
 from animate.action import*
 class Entity(pygame.sprite.Sprite):
     
-    def __init__(self, pos_X = 0, pos_Y = 0, size = 10, actions = None):
+    def __init__(self, map, pos_X = 0, pos_Y = 0, size = 10, actions = None):
         super().__init__()
+        self.map = map
         self.pos_X = pos_X
         self.pos_Y = pos_Y
         self.size = size
         self.actions = dict({})
         
         self.image = pygame.Surface((size*SIZE_PER_UNIT, size*SIZE_PER_UNIT))
-        self.image.fill((0,255,0))
+        # self.image.fill((0,255,0))
         self.on_action = None
         self.rect = self.image.get_rect()
         self.rect.topleft = [self.pos_X * SIZE_PER_UNIT, self.pos_Y * SIZE_PER_UNIT]
@@ -42,7 +43,7 @@ class Entity(pygame.sprite.Sprite):
     def update(self):
         if self.on_action is not None: 
             self.image = self.on_action.get_img()
-        # self.image = pygame.transform.scale(image, (self.size * SIZE_PER_UNIT, self.size * SIZE_PER_UNIT))
+        self.image = pygame.transform.scale(self.image, (self.size * SIZE_PER_UNIT, self.size * SIZE_PER_UNIT))
         self.rect = self.image.get_rect()
         self.rect.topleft = [self.pos_X * SIZE_PER_UNIT, self.pos_Y * SIZE_PER_UNIT]
         
